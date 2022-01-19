@@ -17,7 +17,9 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
 	ca-certificates \
 	cmake \
 	curl \
-	julia
+	julia \
+	graphviz \
+	graphviz-dev
 
 # Node.js is required for Jupyter Lab extension
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
@@ -42,7 +44,9 @@ RUN pip3 install networkx[default]
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # Another network analysys lib (NetworkKit)
-RUN pip3 install networkit snap-stanford ndex2 pyvis seaborn
+RUN pip3 install networkit snap-stanford ndex2 pyvis seaborn altair vega_datasets jupyter-dash pygraphviz
+
+RUN jupyter lab build
 
 RUN mkdir /home/notebooks
 
