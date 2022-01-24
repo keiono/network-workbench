@@ -45,6 +45,7 @@ RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # Another network analysys lib (NetworkKit)
 RUN pip3 install networkit snap-stanford ndex2 pyvis seaborn altair vega_datasets jupyter-dash pygraphviz
+RUN pip3 install tabulate dash-cytoscape dash-bio dash-bio-utils dash_daq
 
 RUN jupyter lab build
 
@@ -52,6 +53,7 @@ RUN mkdir /home/notebooks
 
 EXPOSE 8888
 EXPOSE 6006
+EXPOSE 8050
 
 WORKDIR /home/notebooks
 CMD [ "jupyter", "lab", "--allow-root", "--ip", "0.0.0.0"]
