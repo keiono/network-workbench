@@ -153,8 +153,12 @@ cython_debug/
 
 # Generated images
 *.pdf
-*.png
 *.svg
 *.dot
+*.png
 *.graphml
 *.cx
+
+!images/*
+
+.DS_Store
