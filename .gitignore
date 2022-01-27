@@ -162,3 +162,5 @@ cython_debug/
 !images/*
 
 .DS_Store
+
+sample-data/

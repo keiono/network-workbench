@@ -1,27 +1,25 @@
-var express = require('express');
-const cycx2js = require('cytoscape-cx2js');
+const express = require("express");
+const cycx2js = require("cytoscape-cx2js");
 
-var router = express.Router();
+const router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get("/", function (req, res, next) {
   const param = {
-    "name": "cx-api",
-    "version": "0.0.1",
+    name: "cx-api",
+    version: "0.0.1",
+    description: "Use POST method to send CX JSON",
   };
-  res.header('Content-Type', 'application/json; charset=utf-8')
-  res.send(param);
+  res.json(param);
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   const cx = req.body;
   const cyjsObj = fromCx(cx);
 
-  return res.send(cyjsObj);
+  res.json(cyjsObj);
 });
 
-
-
-const fromCx = cx => {
+const fromCx = (cx) => {
   const utils = new cycx2js.CyNetworkUtils();
   const niceCX = utils.rawCXtoNiceCX(cx);
   const cx2Js = new cycx2js.CxToJs(utils);
@@ -29,9 +27,9 @@ const fromCx = cx => {
   const elements = cx2Js.cyElementsFromNiceCX(niceCX, attributeNameMap);
   const style = cx2Js.cyStyleFromNiceCX(niceCX, attributeNameMap);
   return {
-      elements,
-      style
-  }
-}
+    elements,
+    style,
+  };
+};
 
 module.exports = router;
